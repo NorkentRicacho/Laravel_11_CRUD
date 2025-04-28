@@ -16,7 +16,7 @@ class LoginController extends Controller
     {
         // Validate the incoming request
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'username' => 'required|string',
             'password' => 'required',
         ]);
 
@@ -27,7 +27,7 @@ class LoginController extends Controller
 
         // If login fails, redirect back with an error message
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'username' => 'The provided credentials do not match our records.',
         ]);
     }
 
