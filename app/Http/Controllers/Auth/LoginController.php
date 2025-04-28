@@ -22,7 +22,7 @@ class LoginController extends Controller
 
         // Attempt to log in the user
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+            return redirect()->route('products.index');
         }
 
         // If login fails, redirect back with an error message
