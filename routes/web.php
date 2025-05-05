@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 // Default route
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 // Products routes
