@@ -37,7 +37,7 @@ RedirectResponse
  $image = $request->file('image');
  $imageName = time() . '.' . $image->getClientOriginalExtension();
  $image->move(public_path('images/products'), $imageName);
- $data['image'] = 'images/products/' . $imageName;
+ $data['image'] = asset('images/products/' . $imageName);
  }
 
  Product::create($data);
@@ -68,15 +68,15 @@ $product) : RedirectResponse
 
  if ($request->hasFile('image')) {
  // Delete old image
- if ($product->image && file_exists(public_path($product->image))) {
- unlink(public_path($product->image));
+ if ($product->image && file_exists(public_path(parse_url($product->image, PHP_URL_PATH)))) {
+ unlink(public_path(parse_url($product->image, PHP_URL_PATH)));
  }
  
  // Store new image
  $image = $request->file('image');
  $imageName = time() . '.' . $image->getClientOriginalExtension();
  $image->move(public_path('images/products'), $imageName);
- $data['image'] = 'images/products/' . $imageName;
+ $data['image'] = asset('images/products/' . $imageName);
  }
 
  $product->update($data);
@@ -88,8 +88,8 @@ $product) : RedirectResponse
  */
  public function destroy(Product $product) : RedirectResponse
  {
- if ($product->image && file_exists(public_path($product->image))) {
- unlink(public_path($product->image));
+ if ($product->image && file_exists(public_path(parse_url($product->image, PHP_URL_PATH)))) {
+ unlink(public_path(parse_url($product->image, PHP_URL_PATH)));
  }
  
  $product->delete();
