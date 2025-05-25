@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
  /**
- * Display a listing of the resource.
+ * mo-display a listing of the resource.
  */
  public function index() : View
  {
@@ -19,14 +19,14 @@ class ProductController extends Controller
  ]);
  }
  /**
- * Show the form for creating a new resource.
+ * mo-show sa form for creating a new resource.
  */
  public function create() : View
  {
  return view('products.create');
  }
  /**
- * Store a newly created resource in storage.
+ * mo-store sa newly created resource in storage.
  */
  public function store(StoreProductRequest $request) : 
 RedirectResponse
@@ -45,21 +45,21 @@ RedirectResponse
  ->withSuccess('New product is added successfully.');
  }
  /**
- * Display the specified resource.
+ * mo-display sa specified resource.
  */
  public function show(Product $product) : View
  {
  return view('products.show', compact('product'));
  }
  /**
- * Show the form for editing the specified resource.
+ * mo- show sa form for editing the specified resource.
  */
  public function edit(Product $product) : View
  {
  return view('products.edit', compact('product'));
  }
  /**
- * Update the specified resource in storage.
+ * mo- Update sa specified resource in storage.
  */
  public function update(UpdateProductRequest $request, Product
 $product) : RedirectResponse
@@ -67,12 +67,12 @@ $product) : RedirectResponse
  $data = $request->validated();
 
  if ($request->hasFile('image')) {
- // Delete old image
+ // mo-Delete old image
  if ($product->image && file_exists(public_path(parse_url($product->image, PHP_URL_PATH)))) {
  unlink(public_path(parse_url($product->image, PHP_URL_PATH)));
  }
  
- // Store new image
+ // mo-Store new image
  $image = $request->file('image');
  $imageName = time() . '.' . $image->getClientOriginalExtension();
  $image->move(public_path('images/products'), $imageName);
@@ -84,7 +84,7 @@ $product) : RedirectResponse
  ->withSuccess('Product is updated successfully.');
  }
  /**
- * Remove the specified resource from storage.
+ * mo-Remove sa specified resource from storage.
  */
  public function destroy(Product $product) : RedirectResponse
  {

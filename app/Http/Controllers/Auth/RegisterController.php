@@ -18,9 +18,11 @@ class RegisterController extends Controller
     {
         // Validate incoming registration data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => ['required', 'string', 'max:255', 'regex:/^[^0-9]*$/'],
             'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+        ], [
+            'name.regex' => 'The full name cannot contain numbers.',
         ]);
 
         // Create the new user
